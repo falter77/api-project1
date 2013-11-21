@@ -1,0 +1,59 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Project 1</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+    var MyChicagoArchitects = [
+        {
+          "name" : "Daniel Burnham" ,
+          "building" : "Union Stock Yard Gate" },
+        {
+          "name" : "Helmut Jahn" ,
+          "building" : "Citigroup Center" },
+        {
+          "name" : "Ludwig Mies van der Rohe" ,
+          "building" : "Lake Shore Drive Apartments" },
+        {
+          "name" : "John Root" ,
+          "building" : "Rookery Building" },
+        {
+          "name" : "Louis Sullivan" ,
+          "building" : "Grand Opera House" },
+        {
+          "name" : "Frank Lloyd Wright",
+          "building" : "The Robie House" },
+        {
+          "name" : "Andrew N. Rebori" ,
+          "building" : " Frank F. Fisher Apartments" }
+    ]
+
+
+var sortedArchitects = MyChicagoArchitects.sort(dynamicSort("name"));
+
+$(document).ready(function(){
+  $.each(sortedArchitects, function(index, value) {
+    $("#architects").append("<li>" + value.name + " built " + value.building + "</li>");
+  });  //*each
+});   //*ready
+
+function dynamicSort(property) {
+    var sortOrder = 1;
+    if(property[0] === "-") {
+        sortOrder = -1;
+        property = property.substr(1);
+    }
+    return function (a,b) {
+        var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+        return result * sortOrder;
+    }
+}
+
+</script>
+</head>
+ <body>
+<ul id="architects">
+</ul>
+</body>
+</html>
